@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>King's Summit — Brotherhood Retreat · June 2026</title>
+  <meta name="description" content="A 5-Day Brotherhood Retreat to the Highest Peak in the Contiguous USA. June 8–12, 2026 · Mount Whitney, CA" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #090909;
+      --bg2: #0f0f0e;
+      --bg3: #141412;
+      --gold: #C4973A;
+      --gold-light: #E2B96A;
+      --gold-pale: #3a2c14;
+      --cream: #F2EDE4;
+      --cream-dim: #a09a90;
+      --rule: rgba(196,151,58,0.25);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Barlow', sans-serif;
+      --cond: 'Barlow Condensed', sans-serif;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    /* Grain */
+    .ks-grain {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.35;
+    }
+
+    /* Nav */
+    .ks-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 3rem;
+      background: linear-gradient(to bottom, rgba(9,9,9,0.9) 0%, transparent 100%);
+    }
+    .ks-nav-logo {
+      font-family: var(--cond);
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .ks-nav-cta {
+      font-family: var(--cond);
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--gold);
+      border: none;
+      padding: 0.65rem 1.75rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+      display: inline-block;
+    }
+    .ks-nav-cta:hover { background: var(--gold-light); }
+
+    /* Hero */
+    .ks-hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      position: relative;
+      background: radial-gradient(ellipse at 50% 80%, rgba(196,151,58,0.07) 0%, transparent 70%);
+      overflow: hidden;
+    }
+    .ks-hero-mountain {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 1200px;
+      opacity: 0.09;
+      pointer-events: none;
+    }
+    .ks-hero-eyebrow {
+      font-family: var(--cond);
+      font-weight: 400;
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2.5rem;
+      animation: ksUp 0.9s ease 0.2s both;
+    }
+    .ks-hero h1 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(5rem, 14vw, 12rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      animation: ksUp 1s ease 0.5s both;
+    }
+    .ks-hero h1 em { font-style: italic; color: var(--gold); }
+    .ks-hero-divider {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      margin: 2.5rem auto;
+      animation: ksUp 0.8s ease 0.8s both;
+    }
+    .ks-hero-sub {
+      font-family: var(--cond);
+      font-weight: 300;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      max-width: 500px;
+      line-height: 2;
+      animation: ksUp 0.8s ease 1s both;
+    }
+    .ks-hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 3rem;
+      font-family: var(--cond);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      animation: ksUp 0.8s ease 1.2s both;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .ks-sep { color: var(--rule); }
+
+    /* Sections */
+    .ks-section {
+      padding: 8rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .ks-section-tag {
+      font-family: var(--cond);
+      font-weight: 500;
+      font-size: 0.65rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .ks-section-tag::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .ks-display {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      color: var(--cream);
+      margin-bottom: 2.5rem;
+    }
+    .ks-display em { font-style: italic; color: var(--gold); }
+    .ks-lead {
+      font-family: var(--serif);
+      font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--cream-dim);
+      max-width: 680px;
+    }
+    .ks-lead strong { color: var(--cream); font-weight: 400; }
+    .ks-body {
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--cream-dim);
+      max-width: 620px;
+    }
+    .ks-body strong { color: var(--cream); font-weight: 400; }
+    .ks-pullquote {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+      margin-top: 2rem;
+    }
+    .ks-rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0 3rem;
+    }
+
+    /* Experience grid */
+    .ks-exp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+      margin-top: 4rem;
+      border: 1px solid var(--rule);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .ks-exp-card {
+      background: var(--bg2);
+      padding: 3rem 2.5rem;
+      transition: background 0.3s;
+    }
+    .ks-exp-card:hover { background: var(--bg3); }
+    .ks-exp-icon { font-size: 1.5rem; margin-bottom: 1.5rem; display: block; }
+    .ks-exp-card h3 {
+      font-family: var(--cond);
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .ks-exp-card p {
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--cream-dim);
+    }
+
+    /* Criteria */
+    .ks-criteria { list-style: none; margin-top: 3rem; }
+    .ks-criteria li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--serif);
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 300;
+      color: var(--cream-dim);
+      transition: color 0.3s;
+    }
+    .ks-criteria li:hover { color: var(--cream); }
+    .ks-criteria li::before {
+      content: '—';
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 0.1em;
+    }
+
+    /* Schedule */
+    .ks-schedule { margin-top: 3.5rem; }
+    .ks-day {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+    }
+    .ks-day:first-child { border-top: 1px solid var(--rule); }
+    .ks-day-left { display: flex; flex-direction: column; gap: 0.3rem; }
+    .ks-day-name {
+      font-family: var(--cond);
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .ks-day-date {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--cream-dim);
+    }
+    .ks-day-right { display: flex; flex-direction: column; gap: 0.4rem; }
+    .ks-day-title {
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+    .ks-day-title em { font-style: italic; color: var(--gold); }
+    .ks-day-detail {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--cream-dim);
+      line-height: 1.7;
+      margin-top: 0.2rem;
+    }
+    .ks-day-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+    }
+    .ks-tag {
+      font-family: var(--cond);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-pale);
+      padding: 0.25rem 0.65rem;
+    }
+    .ks-day-summit {
+      background: linear-gradient(to right, rgba(196,151,58,0.04), transparent);
+    }
+    .ks-day-summit .ks-day-title { font-size: 1.65rem; }
+
+    /* Details band */
+    .ks-details-band {
+      background: var(--bg2);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 6rem 2rem;
+    }
+    .ks-details-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .ks-details-col h3 {
+      font-family: var(--cond);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+    .ks-detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--rule);
+      gap: 1rem;
+    }
+    .ks-detail-label {
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+    }
+    .ks-detail-value {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--cream);
+      text-align: right;
+    }
+    .ks-amount {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 5rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1;
+      margin-top: 2rem;
+    }
+    .ks-amount sup { font-size: 1.5rem; vertical-align: super; color: var(--gold); }
+    .ks-amount-note {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      margin-top: 0.5rem;
+    }
+    .ks-spots-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--cond);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-pale);
+      padding: 0.5rem 1rem;
+      margin-top: 1.5rem;
+    }
+    .ks-spots-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    /* CTA */
+    .ks-cta {
+      text-align: center;
+      padding: 10rem 2rem;
+      position: relative;
+      background: radial-gradient(ellipse at 50% 100%, rgba(196,151,58,0.08) 0%, transparent 60%);
+    }
+    .ks-cta h2 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+    .ks-cta h2 em { font-style: italic; color: var(--gold); }
+    .ks-cta-sub {
+      font-family: var(--cond);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      margin-bottom: 3.5rem;
+    }
+    .ks-cta-tag {
+      font-family: var(--cond);
+      font-weight: 500;
+      font-size: 0.65rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .ks-cta-tag::before, .ks-cta-tag::after {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .ks-btn {
+      display: inline-block;
+      font-family: var(--cond);
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--gold);
+      border: none;
+      padding: 1.2rem 3.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .ks-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    /* Footer */
+    .ks-footer {
+      border-top: 1px solid var(--rule);
+      padding: 2.5rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .ks-footer-logo {
+      font-family: var(--cond);
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+    }
+    .ks-footer-copy {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--cream-dim);
+      letter-spacing: 0.05em;
+    }
+
+    /* Reveal */
+    .ks-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .ks-reveal.ks-visible { opacity: 1; transform: translateY(0); }
+    .ks-d1 { transition-delay: 0.15s; }
+    .ks-d2 { transition-delay: 0.3s; }
+    .ks-d3 { transition-delay: 0.45s; }
+    .ks-d4 { transition-delay: 0.6s; }
+
+    /* Animations */
+    @keyframes ksUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; }
+      50%       { opacity: 0.9; }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .ks-nav { padding: 1.25rem 1.5rem; }
+      .ks-section { padding: 5rem 1.5rem; }
+      .ks-exp-grid { grid-template-columns: 1fr; }
+      .ks-details-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .ks-hero-meta { flex-direction: column; gap: 0.75rem; }
+      .ks-day { grid-template-columns: 1fr; gap: 0.75rem; }
+      .ks-footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ks-grain"></div>
+
+  <!-- NAV -->
+  <nav class="ks-nav">
+    <a class="ks-nav-logo" href="#">KING'S SUMMIT</a>
+    <a class="ks-nav-cta" href="https://george730.typeform.com/to/Q7V8c8lP" target="_blank" rel="noopener noreferrer">Apply Now →</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="ks-hero">
+    <svg class="ks-hero-mountain" viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M0 400 L200 220 L320 280 L480 100 L560 160 L640 60 L720 120 L820 200 L900 140 L980 200 L1060 260 L1200 180 L1200 400 Z" fill="#C4973A"/>
+      <path d="M600 60 L560 100 L580 90 L600 60Z" fill="#E2B96A" opacity="0.6"/>
+    </svg>
+    <p class="ks-hero-eyebrow">A Brotherhood Retreat · June 2026</p>
+    <h1>KING'S<br><em>SUMMIT</em></h1>
+    <div class="ks-hero-divider"></div>
+    <p class="ks-hero-sub">A 5-Day Brotherhood Retreat<br>to the Highest Peak in the<br>Contiguous USA</p>
+    <div class="ks-hero-meta">
+      <span>June 8–12, 2026</span>
+      <span class="ks-sep">·</span>
+      <span>Mount Whitney, CA</span>
+    </div>
+  </div>
+
+  <!-- SECTION 1: THE CALL -->
+  <section class="ks-section">
+    <p class="ks-section-tag ks-reveal">Section 01 — The Call</p>
+    <h2 class="ks-display ks-reveal ks-d1">Some men climb<br><em>mountains.</em></h2>
+    <p class="ks-lead ks-reveal ks-d2">Others spend their whole lives <strong>never answering the call.</strong></p>
+    <br><br>
+    <p class="ks-body ks-reveal ks-d3">King's Summit is a 5-day immersive retreat for high-performing men who are ready to test their edge, forge real brotherhood, and return home transformed — not just physically, but at their core.</p>
+    <p class="ks-pullquote ks-reveal ks-d4">This isn't a hiking trip. It's a rite of passage.</p>
+  </section>
+
+  <hr class="ks-rule">
+
+  <!-- SECTION 2: THE EXPERIENCE -->
+  <section class="ks-section">
+    <p class="ks-section-tag ks-reveal">Section 02 — The Experience</p>
+    <h2 class="ks-display ks-reveal ks-d1">What You'll<br><em>Encounter</em></h2>
+    <p class="ks-body ks-reveal ks-d2">Four days in the high Sierra. Every element is designed to push your edge and reveal what's underneath.</p>
+    <div class="ks-exp-grid ks-reveal">
+      <div class="ks-exp-card">
+        <span class="ks-exp-icon">🏔️</span>
+        <h3>The Summit</h3>
+        <p>22 miles round trip to 14,505 ft — the highest point in the lower 48. The climb was never just about the mountain. It was about the man you become on the way up. The mountain is a symbol for more: more courage, more truth, more resilience, and more of the man you are capable of becoming. As the climb stretches you physically, it also invites you to rise mentally, emotionally, and spiritually.</p>
+      </div>
+      <div class="ks-exp-card">
+        <span class="ks-exp-icon">🔥</span>
+        <h3>Group Integration</h3>
+        <p>A guided space to process the experience, distill the lessons, and turn your insight into intention for the life waiting for you at home. What happened on the mountain matters. This is where we make sure it stays with you.</p>
+      </div>
+      <div class="ks-exp-card">
+        <span class="ks-exp-icon">🍵</span>
+        <h3>Tea Ceremony</h3>
+        <p>On integration day, we gather in ritual to slow down, reconnect, and honor the journey. Through stillness, reflection, and presence, we ground the experience and make space for what is now unfolding.</p>
+      </div>
+      <div class="ks-exp-card">
+        <span class="ks-exp-icon">👑</span>
+        <h3>Brotherhood</h3>
+        <p>The men you climb with become the men who hold you. This bond doesn't end at the trailhead—it begins there. Shared challenge creates a different kind of connection—one rooted in truth, respect, and real support.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="ks-rule">
+
+  <!-- SECTION 3: WHO THIS IS FOR -->
+  <section class="ks-section">
+    <p class="ks-section-tag ks-reveal">Section 03 — Who This Is For</p>
+    <h2 class="ks-display ks-reveal ks-d1">This Retreat<br>Is for the <em>Man</em><br>Who…</h2>
+    <ul class="ks-criteria ks-reveal ks-d2">
+      <li>Has built a life he's proud of and knows he's being called into an even greater one</li>
+      <li>Is no stranger to discipline, but wants to live with more depth, presence, and purpose</li>
+      <li>Is seeking an experience that is both challenging and deeply meaningful</li>
+      <li>Is ready to challenge himself in a way that sharpens both his character and his leadership</li>
+      <li>Values being surrounded by men who are grounded, driven, and committed to growth</li>
+      <li>Is ready to answer the call toward more—more truth, more aliveness, more of who he's here to be</li>
+    </ul>
+  </section>
+
+  <hr class="ks-rule">
+
+  <!-- SECTION 4: THE SCHEDULE -->
+  <section class="ks-section">
+    <p class="ks-section-tag ks-reveal">Section 04 — The Schedule</p>
+    <h2 class="ks-display ks-reveal ks-d1">Five Days.<br><em>One Mountain.</em></h2>
+    <p class="ks-body ks-reveal ks-d2">Every day is intentional. Every element earns its place.</p>
+    <div class="ks-schedule">
+      <div class="ks-day ks-reveal">
+        <div class="ks-day-left">
+          <span class="ks-day-name">Monday</span>
+          <span class="ks-day-date">June 8</span>
+        </div>
+        <div class="ks-day-right">
+          <div class="ks-day-title">Evening <em>Arrival</em></div>
+          <p class="ks-day-detail">Arrive in Lone Pine. Meet your brothers. Ground yourself in the high desert before the journey begins.</p>
+          <div class="ks-day-tags">
+            <span class="ks-tag">Arrival</span>
+            <span class="ks-tag">Brotherhood</span>
+          </div>
+        </div>
+      </div>
+      <div class="ks-day ks-reveal">
+        <div class="ks-day-left">
+          <span class="ks-day-name">Tuesday</span>
+          <span class="ks-day-date">June 9</span>
+        </div>
+        <div class="ks-day-right">
+          <div class="ks-day-title"><em>Acclimation</em> Hike</div>
+          <p class="ks-day-detail">A preparatory hike to let your body adjust to the altitude and your mind settle into the mountain. The group coheres here.</p>
+          <div class="ks-day-tags">
+            <span class="ks-tag">Hiking</span>
+            <span class="ks-tag">Acclimation</span>
+            <span class="ks-tag">Group Coaching</span>
+          </div>
+        </div>
+      </div>
+      <div class="ks-day ks-day-summit ks-reveal">
+        <div class="ks-day-left">
+          <span class="ks-day-name">Wednesday</span>
+          <span class="ks-day-date">June 10</span>
+        </div>
+        <div class="ks-day-right">
+          <div class="ks-day-title">Trek to the <em>Summit</em></div>
+          <p class="ks-day-detail">22 miles round trip. 14,505 ft. The highest point in the contiguous United States. You will earn every step — and arrive as a different man.</p>
+          <div class="ks-day-tags">
+            <span class="ks-tag">Summit Day</span>
+            <span class="ks-tag">Mt. Whitney</span>
+            <span class="ks-tag">22 Miles</span>
+            <span class="ks-tag">14,505 ft</span>
+          </div>
+        </div>
+      </div>
+      <div class="ks-day ks-reveal">
+        <div class="ks-day-left">
+          <span class="ks-day-name">Thursday</span>
+          <span class="ks-day-date">June 11</span>
+        </div>
+        <div class="ks-day-right">
+          <div class="ks-day-title"><em>Integration</em> Day</div>
+          <p class="ks-day-detail">The summit is climbed. Now you integrate what it revealed. Tea ceremony at dawn. Yoga to restore the body. Reflection circles to process what emerged. New intentions set in brotherhood.</p>
+          <div class="ks-day-tags">
+            <span class="ks-tag">Tea Ceremony</span>
+            <span class="ks-tag">Yoga</span>
+            <span class="ks-tag">Reflection Circles</span>
+            <span class="ks-tag">New Intentions</span>
+          </div>
+        </div>
+      </div>
+      <div class="ks-day ks-reveal">
+        <div class="ks-day-left">
+          <span class="ks-day-name">Friday</span>
+          <span class="ks-day-date">June 12</span>
+        </div>
+        <div class="ks-day-right">
+          <div class="ks-day-title">Breakfast &amp; <em>Departure</em></div>
+          <p class="ks-day-detail">A final meal together. Closing words. You leave the mountain — but you carry everything it gave you.</p>
+          <div class="ks-day-tags">
+            <span class="ks-tag">Closing Ceremony</span>
+            <span class="ks-tag">Departure</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="ks-rule">
+
+  <!-- SECTION 5: THE DETAILS -->
+  <div class="ks-details-band">
+    <div class="ks-details-inner">
+      <div class="ks-details-col ks-reveal">
+        <h3>Section 05 — The Details</h3>
+        <div class="ks-detail-row">
+          <span class="ks-detail-label">Dates</span>
+          <span class="ks-detail-value">June 8–12, 2026</span>
+        </div>
+        <div class="ks-detail-row">
+          <span class="ks-detail-label">Days</span>
+          <span class="ks-detail-value">Monday – Friday</span>
+        </div>
+        <div class="ks-detail-row">
+          <span class="ks-detail-label">Location</span>
+          <span class="ks-detail-value">Mt. Whitney, Lone Pine, CA</span>
+        </div>
+        <div class="ks-detail-row">
+          <span class="ks-detail-label">Capacity</span>
+          <span class="ks-detail-value">15 Men — Maximum</span>
+        </div>
+        <div class="ks-detail-row">
+          <span class="ks-detail-label">Elevation</span>
+          <span class="ks-detail-value">14,505 ft Summit</span>
+        </div>
+        <div class="ks-spots-badge">
+          <div class="ks-spots-dot"></div>
+          7 Spots Remaining
+        </div>
+      </div>
+      <div class="ks-details-col ks-reveal ks-d2">
+        <h3>Investment</h3>
+        <div class="ks-amount"><sup>$</sup>2,200</div>
+        <p class="ks-amount-note">Full retreat · All facilitation included</p>
+        <br><br>
+        <p class="ks-body" style="font-size: 0.85rem;">Your investment covers 5 days of guided facilitation, group coaching, tea ceremony, and the full Mt. Whitney summit experience. This is a commitment to yourself.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: CTA -->
+  <div class="ks-cta" id="apply">
+    <p class="ks-cta-tag ks-reveal">Section 06 — The Call Awaits</p>
+    <h2 class="ks-reveal ks-d1">Are You Ready<br>to <em>Answer</em><br>the Call?</h2>
+    <p class="ks-cta-sub ks-reveal ks-d2">June 8–12, 2026 · Mt. Whitney · 7 Spots Remaining</p>
+    <a class="ks-btn ks-reveal ks-d3" href="https://george730.typeform.com/to/Q7V8c8lP" target="_blank" rel="noopener noreferrer">APPLY NOW →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="ks-footer">
+    <div class="ks-footer-logo">KING'S SUMMIT</div>
+    <div class="ks-footer-copy">© 2026 King's Summit · Mt. Whitney, CA</div>
+  </footer>
+
+  <script>
+    const els = document.querySelectorAll('.ks-reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('ks-visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach((el) => obs.observe(el));
+  </script>
+
+</body>
+</html>
