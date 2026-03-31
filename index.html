@@ -551,15 +551,241 @@
       50%       { opacity: 0.4; transform: scale(0.7); }
     }
 
-    /* Responsive */
+    /* ================================================
+       SECTION 07 — TESTIMONIALS
+       ================================================ */
+    .ks-testimonials-band {
+      background: var(--bg2);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 8rem 2rem;
+    }
+    .ks-testimonials-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .ks-testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+    .ks-testimonial-card {
+      border-left: 2px solid var(--gold);
+      padding-left: 2rem;
+    }
+    .ks-testimonial-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .ks-testimonial-name {
+      font-family: var(--cond);
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .ks-testimonial-desc {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--cream-dim);
+    }
+
+    /* ================================================
+       SECTION 08 — PHOTO GALLERY
+       ================================================ */
+    .ks-gallery-section {
+      padding: 8rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .ks-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 4rem;
+    }
+    .ks-gallery-item {
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .ks-gallery-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+      transition: filter 0.3s ease;
+    }
+    .ks-gallery-item.tall img { height: 400px; }
+    .ks-gallery-item:hover img { filter: brightness(0.82); }
+    .ks-gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 0 0 var(--gold);
+      transition: box-shadow 0.3s ease;
+      pointer-events: none;
+    }
+    .ks-gallery-item:hover::after {
+      box-shadow: inset 0 0 0 1px var(--gold);
+    }
+    .ks-gallery-caption {
+      font-family: var(--cond);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      margin-top: 0.5rem;
+    }
+
+    /* ================================================
+       SECTION 09 — FAQ
+       ================================================ */
+    .ks-faq-band {
+      background: var(--bg2);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 8rem 2rem;
+    }
+    .ks-faq-inner {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .ks-faq-list { margin-top: 4rem; }
+    .ks-faq-item {
+      border-bottom: 1px solid var(--rule);
+    }
+    .ks-faq-item summary {
+      font-family: var(--serif);
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      font-weight: 300;
+      color: var(--cream);
+      cursor: pointer;
+      list-style: none;
+      padding: 1.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .ks-faq-item summary::-webkit-details-marker { display: none; }
+    .ks-faq-item summary::marker { display: none; }
+    .ks-faq-item summary::after {
+      content: '+';
+      font-family: var(--cond);
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--gold);
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .ks-faq-item[open] summary::after { content: '−'; }
+    .ks-faq-answer {
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--cream-dim);
+      line-height: 1.9;
+      padding-bottom: 1.75rem;
+      max-width: 680px;
+    }
+
+    /* ================================================
+       SECTION 10 — CONTACT FORM
+       ================================================ */
+    .ks-contact-section {
+      padding: 8rem 2rem;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .ks-contact-subtext {
+      font-family: var(--cond);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      margin-top: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .ks-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .ks-form input,
+    .ks-form textarea {
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      color: var(--cream);
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 1rem;
+      padding: 1rem 1.25rem;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+      border-radius: 0;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+    .ks-form input:focus,
+    .ks-form textarea:focus { border-color: var(--gold); }
+    .ks-form input::placeholder,
+    .ks-form textarea::placeholder { color: var(--cream-dim); opacity: 0.6; }
+    .ks-form textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    /* ================================================
+       RESPONSIVE — base sections
+       ================================================ */
     @media (max-width: 700px) {
-      .ks-nav { padding: 1.25rem 1.5rem; }
+      .ks-nav { padding: 1rem 1.25rem; }
+      .ks-nav-cta { font-size: 0.65rem; padding: 0.55rem 1.25rem; }
       .ks-section { padding: 5rem 1.5rem; }
       .ks-exp-grid { grid-template-columns: 1fr; }
+      .ks-exp-card { padding: 2rem 1.5rem; }
       .ks-details-inner { grid-template-columns: 1fr; gap: 3rem; }
       .ks-hero-meta { flex-direction: column; gap: 0.75rem; }
       .ks-day { grid-template-columns: 1fr; gap: 0.75rem; }
       .ks-footer { flex-direction: column; text-align: center; }
+    }
+
+    /* Responsive — new sections */
+    @media (max-width: 700px) {
+      .ks-testimonials-grid { grid-template-columns: 1fr; }
+      .ks-gallery-grid { grid-template-columns: 1fr; }
+      .ks-form textarea { min-height: 120px; }
+      .ks-testimonials-band,
+      .ks-faq-band,
+      .ks-contact-section { padding: 5rem 1.5rem; }
+      .ks-gallery-section { padding: 5rem 1.5rem; }
+    }
+    @media (min-width: 701px) and (max-width: 900px) {
+      .ks-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* CSS Grid flex fallback for older browsers */
+    @supports not (display: grid) {
+      .ks-exp-grid { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; background: none; gap: 0; }
+      .ks-exp-card { -webkit-box-flex: 1; -ms-flex: 1 1 calc(50% - 1px); flex: 1 1 calc(50% - 1px); min-width: 280px; border: 1px solid var(--rule); margin: 0.5px; }
+      .ks-testimonials-grid,
+      .ks-gallery-grid { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; }
+      .ks-testimonial-card { -webkit-box-flex: 1; -ms-flex: 1 1 300px; flex: 1 1 300px; }
+      .ks-gallery-item { -webkit-box-flex: 1; -ms-flex: 1 1 30%; flex: 1 1 30%; }
     }
   </style>
 </head>
@@ -775,6 +1001,144 @@
     </div>
   </div>
 
+  <!-- ================================================
+       SECTION 07 — TESTIMONIALS
+       ================================================ -->
+  <div class="ks-testimonials-band">
+    <div class="ks-testimonials-inner">
+      <p class="ks-section-tag ks-reveal">Section 07 — What They're Saying</p>
+      <h2 class="ks-display ks-reveal ks-d1">The Men<br>Who <em>Answered</em></h2>
+      <div class="ks-testimonials-grid">
+
+        <div class="ks-testimonial-card ks-reveal ks-d2">
+          <p class="ks-testimonial-quote">"I came for the mountain. I left with something I can't fully put into words. The brotherhood forged in those 5 days is something I still carry every single day."</p>
+          <p class="ks-testimonial-name">Marcus T.</p>
+          <p class="ks-testimonial-desc">CEO, San Diego</p>
+        </div>
+
+        <div class="ks-testimonial-card ks-reveal ks-d3">
+          <p class="ks-testimonial-quote">"George creates a container where men can be real with each other. The summit was hard. The integration was harder. Both were exactly what I needed."</p>
+          <p class="ks-testimonial-name">James R.</p>
+          <p class="ks-testimonial-desc">Founder, Austin</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================
+       SECTION 08 — PHOTO GALLERY
+       ================================================ -->
+  <section class="ks-gallery-section">
+    <p class="ks-section-tag ks-reveal">Section 08 — The Journey</p>
+    <h2 class="ks-display ks-reveal ks-d1">Where the <em>Mountain</em><br>Meets the Man</h2>
+
+    <div class="ks-gallery-grid">
+
+      <div class="ks-gallery-item tall ks-reveal">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&auto=format&fit=crop" alt="Mount Whitney summit" loading="lazy" />
+        <p class="ks-gallery-caption">Mt. Whitney, 14,505 ft</p>
+      </div>
+
+      <div class="ks-gallery-item ks-reveal ks-d1">
+        <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&auto=format&fit=crop" alt="Men hiking the trail" loading="lazy" />
+        <p class="ks-gallery-caption">The Trail</p>
+      </div>
+
+      <div class="ks-gallery-item ks-reveal ks-d2">
+        <img src="https://images.unsplash.com/photo-1522163182402-834f871fd851?w=800&auto=format&fit=crop" alt="Brotherhood on the mountain" loading="lazy" />
+        <p class="ks-gallery-caption">Brotherhood</p>
+      </div>
+
+      <div class="ks-gallery-item ks-reveal ks-d1">
+        <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&auto=format&fit=crop" alt="Sierra Nevada landscape" loading="lazy" />
+        <p class="ks-gallery-caption">High Sierra</p>
+      </div>
+
+      <div class="ks-gallery-item tall ks-reveal ks-d2">
+        <img src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=800&auto=format&fit=crop" alt="Summit morning light" loading="lazy" />
+        <p class="ks-gallery-caption">Dawn, Summit Day</p>
+      </div>
+
+      <div class="ks-gallery-item ks-reveal ks-d3">
+        <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&auto=format&fit=crop" alt="Campfire and reflection" loading="lazy" />
+        <p class="ks-gallery-caption">Integration Evening</p>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="ks-rule">
+
+  <!-- ================================================
+       SECTION 09 — FAQ
+       ================================================ -->
+  <div class="ks-faq-band">
+    <div class="ks-faq-inner">
+      <p class="ks-section-tag ks-reveal">Section 09 — Questions</p>
+      <h2 class="ks-display ks-reveal ks-d1">Everything You<br>Need to <em>Know</em></h2>
+
+      <div class="ks-faq-list ks-reveal ks-d2">
+
+        <details class="ks-faq-item">
+          <summary>What is the fitness level required?</summary>
+          <p class="ks-faq-answer">You don't need to be an elite athlete, but you do need to be in solid physical condition. The Mt. Whitney trail is 22 miles round trip with significant elevation gain. We recommend being able to hike 8–10 miles comfortably before arriving. We'll send a full preparation guide after you're accepted.</p>
+        </details>
+
+        <details class="ks-faq-item">
+          <summary>What does the $2,200 investment include?</summary>
+          <p class="ks-faq-answer">It covers 5 days of expert facilitation, all group coaching sessions, the tea ceremony, yoga on integration day, and the full summit experience. It does not include flights, accommodation, or meals (we'll provide recommended lodging and dining options in Lone Pine).</p>
+        </details>
+
+        <details class="ks-faq-item">
+          <summary>Where do I stay during the retreat?</summary>
+          <p class="ks-faq-answer">We recommend staying at one of the lodges in Lone Pine, CA — walking distance from our meeting point. A list of recommended accommodations will be sent after acceptance. Most men spend $100–$150/night on lodging.</p>
+        </details>
+
+        <details class="ks-faq-item">
+          <summary>Is this just a hiking trip?</summary>
+          <p class="ks-faq-answer">No. The hike is the vessel, not the destination. King's Summit is a fully facilitated retreat with intentional coaching, integration work, and brotherhood rituals woven throughout. The mountain is a mirror — what we do with what it reveals is the real work.</p>
+        </details>
+
+        <details class="ks-faq-item">
+          <summary>How do I apply?</summary>
+          <p class="ks-faq-answer">Click "Apply Now" and complete the short Typeform application. George reviews every application personally and will be in touch within 48 hours.</p>
+        </details>
+
+        <details class="ks-faq-item">
+          <summary>How many men are on the retreat?</summary>
+          <p class="ks-faq-answer">We cap attendance at 15 men maximum. This keeps the group tight, the facilitation personal, and the brotherhood real.</p>
+        </details>
+
+        <details class="ks-faq-item">
+          <summary>What happens if I need to cancel?</summary>
+          <p class="ks-faq-answer">Please reach out directly as soon as possible. Cancellations more than 60 days before the retreat receive a full refund. Within 60 days, a credit toward a future retreat is offered.</p>
+        </details>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================
+       SECTION 10 — CONTACT / GET IN TOUCH
+       ================================================ -->
+  <section class="ks-contact-section">
+    <p class="ks-section-tag ks-reveal">Section 10 — Get in Touch</p>
+    <h2 class="ks-display ks-reveal ks-d1">Have a<br><em>Question?</em></h2>
+    <p class="ks-contact-subtext ks-reveal ks-d2">Reach out directly. George reads every message personally.</p>
+
+    <!-- Replace YOUR_FORM_ID with your actual Formspree form ID after setup -->
+    <form class="ks-form ks-reveal ks-d3" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <input type="hidden" name="_subject" value="King's Summit Inquiry" />
+      <input type="text" name="name" placeholder="Full Name" required autocomplete="name" />
+      <input type="email" name="email" placeholder="Email Address" required autocomplete="email" />
+      <textarea name="message" placeholder="Your message…" required></textarea>
+      <div>
+        <button type="submit" class="ks-btn">Send Message →</button>
+      </div>
+    </form>
+  </section>
+
   <!-- SECTION 6: CTA -->
   <div class="ks-cta" id="apply">
     <p class="ks-cta-tag ks-reveal">Section 06 — The Call Awaits</p>
@@ -790,16 +1154,22 @@
   </footer>
 
   <script>
+    // Scroll reveal animation
     const els = document.querySelectorAll('.ks-reveal');
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add('ks-visible');
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    els.forEach((el) => obs.observe(el));
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('ks-visible');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      els.forEach((el) => obs.observe(el));
+    } else {
+      // Fallback for older browsers: show all elements immediately
+      els.forEach(el => el.classList.add('ks-visible'));
+    }
   </script>
 
 </body>
