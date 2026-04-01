@@ -313,7 +313,7 @@
       font-weight: 300;
       color: var(--cream-dim);
     }
-    .ks-day-right{ display: flex; flex-direction: column; gap: 0.4rem; }
+    .ks-day-right { display: flex; flex-direction: column; gap: 0.4rem; }
     .ks-day-title {
       font-family: var(--serif);
       font-size: 1.45rem;
@@ -819,7 +819,502 @@
 
   <hr class="ks-rule">
 
-  <!-- SECTION 4: THE SCHEDULE -->
+  
+  <!-- SECTION 03.5: MEET YOUR GUIDE -->
+  <style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  .guide-section, .guide-section * { 
+    --stone:     #1a1714;
+    --ash:       #2d2926;
+    --slate:     #3f3a35;
+    --fog:       #8a8278;
+    --cream:     #e8e0d0;
+    --warm:      #f2ead8;
+    --gold:      #b8935a;
+    --gold-lt:   #d4aa72;
+    --ember:     #c4622d;
+    --snow:      #f7f3ec;
+  }
+
+  body {
+    background: var(--stone);
+    color: var(--cream);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .guide-section {
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+
+  /* ── LEFT: VISUAL PANEL ── */
+  .visual-panel {
+    position: relative;
+    min-height: 700px;
+    background: linear-gradient(160deg, #2a2420 0%, #1a1714 60%, #0e0c0a 100%);
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+  }
+
+  .mountain-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 85%, rgba(184,147,90,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 30% 100%, rgba(196,98,45,0.08) 0%, transparent 60%),
+      linear-gradient(180deg, #0e0c0a 0%, #1a1714 40%, #231e19 100%);
+  }
+
+  /* Mountain silhouette SVG */
+  .mountain-silhouette {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.35;
+  }
+
+  /* Grain texture overlay */
+  .grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .visual-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px 48px 52px;
+    width: 100%;
+  }
+
+  .guide-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .guide-label::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.7;
+  }
+
+  .guide-name-block {
+    margin-top: auto;
+    padding-bottom: 8px;
+  }
+
+  .guide-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 6vw, 80px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    color: var(--warm);
+    display: block;
+  }
+
+  .guide-name em {
+    font-style: italic;
+    color: var(--gold-lt);
+  }
+
+  .guide-title-tag {
+    margin-top: 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fog);
+    line-height: 1.8;
+  }
+
+  /* Credential pills */
+  .credential-list {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .credential {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fog);
+  }
+
+  .credential-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ── RIGHT: COPY PANEL ── */
+  .copy-panel {
+    background: var(--snow);
+    color: var(--stone);
+    padding: 72px 56px 72px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .copy-panel::before {
+    content: 'G';
+    position: absolute;
+    top: -40px;
+    right: -20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 320px;
+    font-weight: 300;
+    color: var(--stone);
+    opacity: 0.03;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .section-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-eyebrow::after {
+    content: '';
+    flex: 1;
+    max-width: 40px;
+    height: 1px;
+    background: var(--ember);
+    opacity: 0.6;
+  }
+
+  .headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.2vw, 40px);
+    font-weight: 400;
+    line-height: 1.18;
+    color: var(--stone);
+    margin-bottom: 32px;
+    max-width: 520px;
+  }
+
+  .headline em {
+    font-style: italic;
+    color: var(--ember);
+  }
+
+  .rule {
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin-bottom: 32px;
+  }
+
+  .body-copy {
+    font-family: 'Barlow', sans-serif;
+    font-size: 15.5px;
+    font-weight: 300;
+    line-height: 1.78;
+    color: #3a3530;
+    max-width: 520px;
+  }
+
+  .body-copy p {
+    margin-bottom: 20px;
+  }
+
+  .body-copy p:last-child {
+    margin-bottom: 0;
+  }
+
+  .body-copy strong {
+    font-weight: 500;
+    color: var(--stone);
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    margin: 36px 0;
+    padding: 24px 28px;
+    border-left: 3px solid var(--gold);
+    background: rgba(184,147,90,0.06);
+    position: relative;
+  }
+
+  .pull-quote::before {
+    content: '"';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    color: var(--gold);
+    opacity: 0.4;
+    line-height: 1;
+  }
+
+  .pull-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--stone);
+    margin: 0;
+  }
+
+  /* Stats row */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 40px 0;
+    padding: 32px 0;
+    border-top: 1px solid rgba(26,23,20,0.1);
+    border-bottom: 1px solid rgba(26,23,20,0.1);
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--stone);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-num span {
+    color: var(--ember);
+  }
+
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--fog);
+    margin-top: 8px;
+    display: block;
+  }
+
+  /* CTA */
+  .cta-area {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 16px 36px;
+    background: var(--stone);
+    color: var(--gold-lt);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold);
+    color: var(--stone);
+  }
+
+  .anchor-link {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fog);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, color 0.3s;
+    cursor: pointer;
+  }
+
+  .anchor-link:hover {
+    color: var(--stone);
+    border-color: var(--stone);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .guide-section {
+      grid-template-columns: 1fr;
+    }
+    .visual-panel {
+      min-height: 460px;
+    }
+    .copy-panel {
+      padding: 52px 32px;
+    }
+    .stat-row {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+  }
+  </style>
+  <section class="guide-section">
+
+  <!-- LEFT: VISUAL -->
+  <div class="visual-panel">
+    <div class="mountain-bg"></div>
+
+    <!-- Mountain silhouette -->
+    <svg class="mountain-silhouette" viewBox="0 0 600 340" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
+      <path d="M0 340 L80 240 L130 280 L200 160 L240 200 L300 80 L340 130 L390 60 L430 110 L480 170 L530 120 L600 200 L600 340 Z" fill="url(#mtnGrad)"/>
+      <!-- Snow cap -->
+      <path d="M300 80 L320 110 L340 130 L390 60 L415 90 L430 110 L410 105 L390 60 L355 95 L340 130 L320 110 Z" fill="rgba(232,224,208,0.5)"/>
+      <defs>
+        <linearGradient id="mtnGrad" x1="300" y1="60" x2="300" y2="340" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#3f3a35"/>
+          <stop offset="100%" stop-color="#1a1714"/>
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <div class="grain"></div>
+
+    <div class="visual-content">
+      <div class="guide-label">Meet Your Guide</div>
+
+      <div class="guide-name-block">
+        <span class="guide-name">George<br><em>Yueh</em></span>
+        <div class="guide-title-tag">
+          Transformational Life &amp; Leadership Coach<br>
+          Peak Performance Strategist<br>
+          Founder, ShapeShift Coach LLC
+        </div>
+        <div class="credential-list">
+          <div class="credential"><span class="credential-dot"></span>15+ Years of Leadership, Speaking &amp; Coaching</div>
+          <div class="credential"><span class="credential-dot"></span>20+ Years of Yoga, Meditation &amp; Mindfulness Practice</div>
+          <div class="credential"><span class="credential-dot"></span>Former National Speaker &amp; Peak Performance Strategist with Tony Robbins</div>
+          <div class="credential"><span class="credential-dot"></span>Executive Coach · Trusted Advisor · Brotherhood Builder</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: COPY -->
+  <div class="copy-panel">
+
+    <div class="section-eyebrow">Your Leader on the Mountain</div>
+
+    <h2 class="headline">
+      He Doesn't Lead Men <em>Toward</em> the Summit.<br>
+      He Leads Them <em>Back</em> to Themselves.
+    </h2>
+
+    <div class="rule"></div>
+
+    <div class="body-copy">
+
+      <p><strong>George has one rule: you can only take others as far as you've taken yourself.</strong> George has spent his life seeking out the ultimate "Peak Experience."</p>
+
+      <p>In 2025, he trekked to Mount Everest's base camp. He's surfed one of the world's most dangerous breaks — <strong>Teahupo'o, Tahiti</strong>. He's stood at the edge of the dusty playa at Burning Man. Moved through the stillness of Nepal and the chaos of the world across <strong>35+ countries</strong> — not as a tourist, but as a student of what it means to be fully alive. He's found it during moments of grand adventure and in sacred stillness.</p>
+
+      <p>He's not a man who reads about transformation. <strong>He is transformation.</strong></p>
+
+    </div>
+
+    <div class="pull-quote">
+      <p>The most successful men in the room are often the most quietly stuck. George knows — because he was one of them.</p>
+    </div>
+
+    <div class="body-copy">
+
+      <p>Before he became the coach that executives call when everything looks perfect but something essential is missing, George was a <strong>top producer for a billion-dollar organization</strong> who had checked every box — and found himself empty on the other side. That gap between outward success and inward fulfillment became his life's work.</p>
+
+      <p>He trained as a <strong>National Speaker and Peak Performance Strategist with Tony Robbins</strong>, working alongside thousands of high-performers. He built a methodology — <strong>ShapeShift</strong> — that fuses performance science, emotional mastery, and subconscious pattern work into something rare: a system that changes men from the inside out. Today, he serves as a <strong>Transformational Life Coach and Trusted Advisor to Executive Professionals</strong> — working with founders, CEOs, and high-impact leaders who are done performing and ready to become.</p>
+
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-item">
+        <span class="stat-num">35<span>+</span></span>
+        <span class="stat-label">Countries Explored</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">15<span>+</span></span>
+        <span class="stat-label">Years of Practice</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">17<span>k+</span></span>
+        <span class="stat-label">Ft. Mt. Whitney Summit</span>
+      </div>
+    </div>
+
+    <div class="body-copy">
+      <p>On the trail, George is the one who'll <strong>drop into a yoga flow at 10,000 feet</strong>, laugh the loudest at camp, and then sit with you in the kind of silence where the right question finally surfaces. He starts every morning slow — tea ceremony, meditation, movement near the ocean in Los Angeles — because he knows that how you begin determines everything that follows.</p>
+
+      <p>He brings that same intentionality to King's Summit. This isn't a hike with a motivational speech at the top. <strong>It's a crucible.</strong> A held space where the altitude demands presence, the brotherhood makes honesty feel possible, and your guide has already stood at the edge — and chosen to go further.</p>
+    </div>
+
+    <div class="cta-area">
+      <a class="btn-primary" href="https://george730.typeform.com/to/Q7V8c8lP" target="_blank" rel="noopener noreferrer">Claim Your Spot</a>
+      <a class="anchor-link" href="#apply">See the Full Experience ↓</a>
+    </div>
+
+  </div>
+
+</section>
+
+  <hr class="ks-rule">
+
+<!-- SECTION 4: THE SCHEDULE -->
   <section class="ks-section">
     <p class="ks-section-tag ks-reveal">Section 04 &mdash; The Schedule</p>
     <h2 class="ks-display ks-reveal ks-d1">Five Days.<br><em>One Mountain.</em></h2>
@@ -953,10 +1448,10 @@
     <h2 class="ks-display ks-reveal ks-d1">The Men Who<br><em>Show Up</em></h2>
     <div class="ks-group-grid">
       <div class="ks-group-photo ks-reveal">
-        <img src="photos/group-waterfall.jpg" alt="King's Summit brotherhood at a mountain waterfall" />
+        <img src="data:image/jpeg;base64,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" alt="K)og's Summit brotherhood at a mountain waterfall" />
       </div>
       <div class="ks-group-photo ks-reveal ks-d1">
-        <img src="photos/group-hiking.jpg" alt="King's Summit men hiking in the mountains" />
+        <img src="data:image/jpeg;base64,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" alt="King's Summit men hiking in the mountains" />
       </div>
     </div>
   </section>
