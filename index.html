@@ -313,7 +313,7 @@
       font-weight: 300;
       color: var(--cream-dim);
     }
-    .ks-day-right { display: flex; flex-direction: column; gap: 0.4rem; }
+    .ks-day-right{ display: flex; flex-direction: column; gap: 0.4rem; }
     .ks-day-title {
       font-family: var(--serif);
       font-size: 1.45rem;
@@ -584,6 +584,96 @@
       inset: 0;
       background: linear-gradient(to top, rgba(9,9,9,0.45) 0%, transparent 55%);
       pointer-events: none;
+    }
+
+    /* ================================================
+       SECTION 09 &mdash; TESTIMONIALS CAROUSEL
+       ================================================ */
+    .ks-testimonials {
+      padding: 8rem 2rem;
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .ks-carousel {
+      margin-top: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .ks-carousel-track {
+      display: flex;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .ks-testimonial-card {
+      min-width: 100%;
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .ks-quote-mark,
+    .ks-quote-close {
+      font-family: var(--serif);
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--gold);
+      opacity: 0.6;
+      user-select: none;
+    }
+    .ks-quote-mark { margin-bottom: -1rem; }
+    .ks-quote-close { margin-top: -1rem; }
+    .ks-testimonial-text {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.75;
+      color: var(--cream);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .ks-carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .ks-carousel-btn {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      width: 2.75rem;
+      height: 2.75rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .ks-carousel-btn:hover {
+      background: var(--gold);
+      color: var(--bg);
+    }
+    .ks-carousel-dots {
+      display: flex;
+      gap: 0.6rem;
+    }
+    .ks-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cream-dim);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .ks-dot.active {
+      background: var(--gold);
+      transform: scale(1.4);
     }
 
         @media (max-width: 700px) {
@@ -873,6 +963,64 @@
 
   <hr class="ks-rule">
 
+  <!-- ================================================
+       SECTION 09 &mdash; TESTIMONIALS
+       ================================================ -->
+  <section class="ks-testimonials" id="testimonials">
+    <p class="ks-section-tag ks-reveal">Section 09 &mdash; Voices from the Journey</p>
+    <h2 class="ks-display ks-reveal ks-d1">What Men<br><em>Say After</em></h2>
+
+    <div class="ks-carousel" id="ksCarousel">
+      <div class="ks-carousel-track" id="ksTrack">
+
+        <div class="ks-testimonial-card">
+          <div class="ks-quote-mark">&ldquo;</div>
+          <p class="ks-testimonial-text">Today I am courageous, bold, and open to new challenges. I apply the tools and teachings George has given me to reveal specific insights, which in turn have become huge learnings for me. I now have the opportunity to step into a new paradigm that I am committed to living &amp; believing.</p>
+          <div class="ks-quote-close">&rdquo;</div>
+        </div>
+
+        <div class="ks-testimonial-card">
+          <div class="ks-quote-mark">&ldquo;</div>
+          <p class="ks-testimonial-text">George is uniquely gifted with the power to sit with others and create space for us to answer our own questions. It&rsquo;s like he&rsquo;s holding up a mirror for us to really examine what&rsquo;s there, and access our innermost parts of ourselves, where truth exists. I feel emotionally, spiritually, and intellectually wiser, capable of accessing deeper parts of my consciousness that I couldn&rsquo;t prior to coaching.</p>
+          <div class="ks-quote-close">&rdquo;</div>
+        </div>
+
+        <div class="ks-testimonial-card">
+          <div class="ks-quote-mark">&ldquo;</div>
+          <p class="ks-testimonial-text">George has changed my life, my marriage, and the way I view the future. He is uniquely gifted with the power to sit with others and create space for us to answer our own questions. It&rsquo;s like he&rsquo;s holding up a mirror for us to really examine what&rsquo;s there, and access our innermost parts of ourselves, where truth exists. When I think of people I want to model my life after, George is at the top of the list.</p>
+          <div class="ks-quote-close">&rdquo;</div>
+        </div>
+
+        <div class="ks-testimonial-card">
+          <div class="ks-quote-mark">&ldquo;</div>
+          <p class="ks-testimonial-text">After our meeting, I had an incredible final interview and was in such a good headspace that I did two things my timid self would&rsquo;ve been hesitant to do &mdash; disclosed my desire to buy my own building asap and ask for the moon on salary and bonus. They loved my transparency and came back with exactly what I asked for.</p>
+          <div class="ks-quote-close">&rdquo;</div>
+        </div>
+
+        <div class="ks-testimonial-card">
+          <div class="ks-quote-mark">&ldquo;</div>
+          <p class="ks-testimonial-text">George is the first person that really made me think BIG. Like REALLY big. Big and fast. It has changed the way I look at life. The part of your coaching and feedback that is most special is that it was PURE. No guilt, no games, no hidden agenda, just positive support. It&rsquo;s clear George wants to see others grow and thrive. George helped me remember that the world is not evil &mdash; not everyone wants to see you fail. Some people just want to pour into others and make this world better. That is George.</p>
+          <div class="ks-quote-close">&rdquo;</div>
+        </div>
+
+        <div class="ks-testimonial-card">
+          <div class="ks-quote-mark">&ldquo;</div>
+          <p class="ks-testimonial-text">George, I feel like I&rsquo;m having the best few days of my whole life. I am really seeing the rewards of my hard work, our coaching sessions, and consistency, working towards my dreams. You&rsquo;ve shown me how to lean into my heart! It feels incredible to be so in flow and so confident about things. I&rsquo;m amazed at what I&rsquo;ve learned and how I&rsquo;m leading this launch myself. I&rsquo;m going all out. The time is now. Thank you, George!</p>
+          <div class="ks-quote-close">&rdquo;</div>
+        </div>
+
+      </div><!-- /.ks-carousel-track -->
+
+      <div class="ks-carousel-controls">
+        <button class="ks-carousel-btn" id="ksPrev" aria-label="Previous testimonial">&#8592;</button>
+        <div class="ks-carousel-dots" id="ksDots"></div>
+        <button class="ks-carousel-btn" id="ksNext" aria-label="Next testimonial">&#8594;</button>
+      </div>
+    </div><!-- /.ks-carousel -->
+  </section>
+
+  <hr class="ks-rule">
+
 
   <!-- SECTION 6: CTA -->
   <div class="ks-cta" id="apply">
@@ -892,6 +1040,43 @@
   </footer>
 
   <script>
+    // Testimonials carousel
+    (function() {
+      const track = document.getElementById('ksTrack');
+      const cards = track ? track.querySelectorAll('.ks-testimonial-card') : [];
+      const dotsEl = document.getElementById('ksDots');
+      let current = 0;
+      const total = cards.length;
+      if (!total) return;
+
+      // Build dots
+      const dots = [];
+      for (let i = 0; i < total; i++) {
+        const d = document.createElement('button');
+        d.className = 'ks-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Go to testimonial ' + (i + 1));
+        d.addEventListener('click', () => goTo(i));
+        dotsEl.appendChild(d);
+        dots.push(d);
+      }
+
+      function goTo(idx) {
+        current = (idx + total) % total;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      document.getElementById('ksPrev').addEventListener('click', () => goTo(current - 1));
+      document.getElementById('ksNext').addEventListener('click', () => goTo(current + 1));
+
+      // Auto-advance every 7 seconds
+      let timer = setInterval(() => goTo(current + 1), 7000);
+      document.getElementById('ksCarousel').addEventListener('mouseenter', () => clearInterval(timer));
+      document.getElementById('ksCarousel').addEventListener('mouseleave', () => {
+        timer = setInterval(() => goTo(current + 1), 7000);
+      });
+    })();
+
     // Scroll reveal animation
     const els = document.querySelectorAll('.ks-reveal');
     if ('IntersectionObserver' in window) {
